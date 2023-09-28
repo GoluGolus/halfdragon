@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titre de la page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Info Page</title>
 </head>
 <body>
 
-    <!-- Le contenu de votre page va ici -->
+  <div id="discord-info-container">
+    <!-- Les informations Discord seront affichées ici -->
+  </div>
+
+  <script>
+    // Utilisez JavaScript pour faire une requête à l'API côté serveur
+    fetch('http://localhost:3000/api/discord-info')
+      .then(response => response.json())
+      .then(data => {
+        // Mettez à jour la page avec les informations Discord
+        document.getElementById('discord-info-container').innerHTML = `
+          <h1>${data.username}</h1>
+          <img src="${data.avatarURL}" alt="Discord Avatar">
+          <!-- Ajoutez d'autres éléments si nécessaire -->
+        `;
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
 
 </body>
 </html>
